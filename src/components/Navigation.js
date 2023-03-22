@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import styles from './Navigation.module.css';
 
@@ -9,15 +9,27 @@ export default function Navigation() {
             <Link className={styles.active} to="/">
                 Fitness
             </Link>
-            <Link to="/catalog">All Workouts Today</Link>
+            <NavLink to="/catalog"
+                style={({ isActive }) => { return isActive ? { backgroundColor: 'green' } : undefined; }}
+            >
+                All Workouts Today
+            </NavLink>
             {/* Logged users */}
             <div className={styles.user}>
-                <Link to="/create">Create Your Workout</Link>
+                <NavLink to="/create"
+                    style={({ isActive }) => { return isActive ? { backgroundColor: 'green' } : undefined; }}
+                >
+                    Create Your Workout
+                </NavLink>
                 <div className={styles.profile}>
                     <span>
                         Welcome, {'{'}username{'}'}
                     </span>
-                    <Link to="/profile">My Workout</Link>
+                    <NavLink to="/profile"
+                        style={({ isActive }) => { return isActive ? { backgroundColor: 'green' } : undefined; }}
+                    >
+                        My Workout
+                    </NavLink>
                     <Link to="/logout">Logout</Link>
                 </div>
             </div>
@@ -25,8 +37,16 @@ export default function Navigation() {
 
             <div className={styles.guest}>
                 <div className={styles.profile}>
-                    <Link to="/login">Login</Link>
-                    <Link to="/register">Register</Link>
+                    <NavLink to="/login"
+                        style={({ isActive }) => { return isActive ? { backgroundColor: 'green' } : undefined; }}
+                    >
+                        Login
+                    </NavLink>
+                    <NavLink to="/register"
+                        style={({ isActive }) => { return isActive ? { backgroundColor: 'green' } : undefined; }}
+                    >
+                        Register
+                    </NavLink>
                 </div>
 
             </div>

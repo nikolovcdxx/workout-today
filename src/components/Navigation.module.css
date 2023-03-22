@@ -13,6 +13,7 @@ nav a, nav span {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    
 }
 
 /* Change the color of links on hover */
@@ -20,11 +21,6 @@ nav a, nav span {
 nav a:hover {
     background-color: #ddd;
     color: black;
-}
-
-/* Add a color to the active/current link */
-nav a, #common {
-    float: left;
 }
 
 .active {
