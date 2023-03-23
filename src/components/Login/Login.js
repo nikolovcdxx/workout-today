@@ -1,11 +1,22 @@
 import { Link } from 'react-router-dom';
 
 export default function Login() {
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        const {
+            username,
+            password
+        } = Object.fromEntries(new FormData(e.target));
+
+        console.log(username, password);
+    };
+
     return (
-        <section id="login">
-            <div class="form">
+        <section>
+            <div className="form">
                 <h2>Login</h2>
-                <form class="login-form">
+                <form className="login-form" onSubmit={onSubmit}>
                     <input type="text" name="username" id="username" placeholder="username" />
                     <input
                         type="password"
@@ -14,8 +25,8 @@ export default function Login() {
                         placeholder="password"
                     />
                     <button type="submit">login</button>
-                    <p class="message">
-                        Not registered? <Link to="/register">Create an account</Link>
+                    <p className="message">
+                        Not registered? <Link to="/register"> Create an account </Link>
                     </p>
                 </form>
             </div>

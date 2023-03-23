@@ -1,5 +1,5 @@
 const express = require('express');
-const connectToMongo = require('./db');
+const connectToMongo = require('./database');
 
 const app = express();
 const port = 3005;
