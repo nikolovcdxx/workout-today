@@ -1,5 +1,10 @@
-const User = require('../models/User');
 const { hash, compare } = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const User = require('../models/User');
+
+const JWT_SECRET = 'uhasdiuhqwekljh12i3yt12874yhuiy42h187yt28174t6gfdsasd';
+const blacklist = [];
 
 async function register(username, password) {
     const existing = await getUserByUsername(username);
@@ -8,16 +13,13 @@ async function register(username, password) {
         throw new Error('Username is taken');
     }
 
-    
-    const hashedPassword = await hash(password, 10);
-    
     const user = new User({
         username,
-        password: hashedPassword
+        hashedPassword: await hash(password, 10)
     });
     await user.save();
 
-    return user;
+    return createSession(user);
 }
 
 async function login(username, password) {
@@ -27,12 +29,16 @@ async function login(username, password) {
         throw new Error('Incorrect username or password');
     }
 
-    const hasMatch = await compare(password, user.password);
+    const hasMatch = await compare(password, user.hashedPassword);
     if (!hasMatch) {
         throw new Error('Incorrect username or password');
     }
 
-    return user;
+    return createSession(user);
+}
+
+function logout(token) {
+    blacklist.push(token);
 }
 
 async function getUserByUsername(username) {
@@ -41,7 +47,35 @@ async function getUserByUsername(username) {
     return user;
 }
 
+function createSession(user) {
+
+    return {
+        username: user.username,
+        _id: user._id,
+        accessToken: jwt.sign({
+            username: user.username,
+            _id: user._id
+        }, JWT_SECRET)
+    };
+}
+
+function verifySession(token) {
+    const payload = jwt.verify(token, JWT_SECRET);
+
+    if (blacklist.includes(token)) {
+        throw new Error('Token is invalidated');
+    }
+
+    return {
+        username: payload.username,
+        _id: payload._id,
+        token
+    };
+}
+
 module.exports = {
     login,
-    register
+    register,
+    logout,
+    verifySession
 };

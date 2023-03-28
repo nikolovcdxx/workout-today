@@ -1,6 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { login } from '../../services/authService';
 
 export default function Login() {
+    const navigate = useNavigate();
+
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -10,6 +14,14 @@ export default function Login() {
         } = Object.fromEntries(new FormData(e.target));
 
         console.log(username, password);
+
+        login(username, password)
+            .then(authData => {
+                authData.msg ? console.log(authData.msg) : console.log(authData);
+            })
+            .catch(() => {
+                navigate('/404');
+            });
     };
 
     return (
