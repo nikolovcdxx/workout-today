@@ -1,55 +1,58 @@
+import { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+
+import { AuthContext } from '../../contexts/AuthContext';
 
 import styles from './Navigation.module.css';
 
-
 export default function Navigation() {
+    const { user } = useContext(AuthContext);
+
     return (
         <nav>
             <Link className={styles.active} to="/">
                 Fitness
             </Link>
             <NavLink to="/catalog"
-                style={({ isActive }) => { return isActive ? { backgroundColor: 'green' } : undefined; }}
+                style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}
             >
                 All Workouts Today
             </NavLink>
-            {/* Logged users */}
-            <div className={styles.user}>
-                <NavLink to="/create"
-                    style={({ isActive }) => { return isActive ? { backgroundColor: 'green' } : undefined; }}
-                >
-                    Create Your Workout
-                </NavLink>
-                <div className={styles.profile}>
-                    <span>
-                        Welcome, {'{'}username{'}'}
-                    </span>
-                    <NavLink to="/profile"
-                        style={({ isActive }) => { return isActive ? { backgroundColor: 'green' } : undefined; }}
-                    >
-                        My Workout
-                    </NavLink>
-                    <Link to="/logout">Logout</Link>
-                </div>
-            </div>
-            {/* Guest users */}
 
-            <div className={styles.guest}>
-                <div className={styles.profile}>
-                    <NavLink to="/login"
-                        style={({ isActive }) => { return isActive ? { backgroundColor: 'green' } : undefined; }}
+            {user.accessToken
+                ? <div className={styles.user}>
+                    <NavLink to="/create"
+                        style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}
                     >
-                        Login
+                        Create Your Workout
                     </NavLink>
-                    <NavLink to="/register"
-                        style={({ isActive }) => { return isActive ? { backgroundColor: 'green' } : undefined; }}
-                    >
-                        Register
-                    </NavLink>
+                    <div className={styles.profile}>
+                        <span>
+                            Welcome, {user.username}
+                        </span>
+                        <NavLink to="/profile"
+                            style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}
+                        >
+                            My Workout
+                        </NavLink>
+                        <Link to="/logout">Logout</Link>
+                    </div>
                 </div>
+                : <div className={styles.guest}>
+                    <div className={styles.profile}>
+                        <NavLink to="/login"
+                            style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}
+                        >
+                            Login
+                        </NavLink>
+                        <NavLink to="/register"
+                            style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}
+                        >
+                            Register
+                        </NavLink>
+                    </div>
 
-            </div>
+                </div>}
         </nav>
     );
 }

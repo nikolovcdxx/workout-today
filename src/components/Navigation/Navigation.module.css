@@ -1,5 +1,5 @@
 nav {
-    background-color: #333;
+    background-color: #8f0707;
     overflow: hidden;
 }
 
@@ -19,12 +19,12 @@ nav a, nav span {
 /* Change the color of links on hover */
 
 nav a:hover {
-    background-color: #ddd;
+    background-color: #e70d0d;
     color: black;
 }
 
 .active {
-    background-color: #0069d9;
+    background-color: #0c0c0c;
     color: white;
 }
 
@@ -32,7 +32,4 @@ nav a:hover {
     float: right;
 }
 
-/* nav div.user {
-    display: none;
-} */
 

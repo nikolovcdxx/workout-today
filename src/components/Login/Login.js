@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { login } from '../../services/authService';
+import { AuthContext } from '../../contexts/AuthContext';
+import * as authService from '../../services/authService';
 
 export default function Login() {
+    const { userLogin } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onSubmit = (e) => {
@@ -15,9 +18,14 @@ export default function Login() {
 
         console.log(username, password);
 
-        login(username, password)
+        authService.login(username, password)
             .then(authData => {
-                authData.msg ? console.log(authData.msg) : console.log(authData);
+                if (authData.msg) {
+                    console.log(authData.msg);
+                } else {
+                    userLogin(authData);
+                    navigate('/');
+                }
             })
             .catch(() => {
                 navigate('/404');
