@@ -16,8 +16,6 @@ export default function Login() {
             password
         } = Object.fromEntries(new FormData(e.target));
 
-        console.log(username, password);
-
         authService.login(username, password)
             .then(authData => {
                 if (authData.msg) {
