@@ -46,7 +46,7 @@ export default function Register() {
                         id="repass"
                         placeholder="repeat password"
                     />
-                    <button type="submit">login</button>
+                    <button type="submit">register</button>
                     <p className="message">
                         Already registered? <Link to="/login">Login</Link>
                     </p>

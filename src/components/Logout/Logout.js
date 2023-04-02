@@ -12,7 +12,7 @@ export default function Logout() {
         authService.logout(user.accessToken)
             .then(() => {
                 userLogout();
-                navigate('/');
+                navigate('/', {replace: true});
             })
             .catch(() => {
                 navigate('/');

@@ -36,6 +36,7 @@ async function start() {
     app.use(express.json());
     app.get('/', (req, res) => {console.log(req.user); res.json('Hello'); });
     app.use('/users', userController);
+    //app.use('/workout', workoutController);
 
     app.listen(port, () => {
         console.log('Database listening at http://localhost:3005');
