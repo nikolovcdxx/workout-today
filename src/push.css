@@ -17,3 +17,32 @@
     box-shadow: 20px 20px rgba(0, 0, 0, .15);
     transition: all .4s ease;
 }
+
+.push-card div {
+    color: red;
+    text-decoration: underline;
+    -webkit-text-stroke: thick;
+}
+
+.btn-generate {
+    display: block;
+    padding: 25px 100px 25px 100px;
+    margin: auto;
+    border-radius: 30px;
+    font-size: xx-large;
+    cursor: pointer;
+}
+
+.push-card-wrapper select {
+    height: 35px;
+    width: 320px;
+}
+
+.push-card-wrapper button {
+    height: 50px;
+    color: blue;
+    border-radius: 200px;
+    cursor: pointer;
+    width: 138px;
+    margin: auto;
+}
