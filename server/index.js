@@ -34,12 +34,12 @@ async function start() {
     app.use(auth());
 
     app.use(express.json());
-    app.get('/', (req, res) => {console.log(req.user); res.json('Hello'); });
+    app.get('/', (req, res) => res.send('Welcome my friends!'));
     app.use('/users', userController);
     //app.use('/workout', workoutController);
 
     app.listen(port, () => {
-        console.log('Database listening at http://localhost:3005');
+        console.log('Rest service started on port 3005 (http://localhost:3005)');
     });
 }
 

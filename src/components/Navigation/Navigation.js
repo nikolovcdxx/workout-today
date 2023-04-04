@@ -8,6 +8,10 @@ import styles from './Navigation.module.css';
 export default function Navigation() {
     const { user } = useContext(AuthContext);
 
+    const usernameCap = (u) => {
+        return u.charAt(0).toUpperCase() + u.slice(1);
+    };
+
     return (
         <nav>
             <Link className={styles.active} to="/">
@@ -28,7 +32,7 @@ export default function Navigation() {
                     </NavLink>
                     <div className={styles.profile}>
                         <span>
-                            Welcome, {user.username}
+                            Welcome, {usernameCap(user.username)}
                         </span>
                         <NavLink to="/profile"
                             style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}

@@ -18,7 +18,7 @@
     transition: all .4s ease;
 }
 
-.push-card div {
+.push-card label {
     color: red;
     text-decoration: underline;
     -webkit-text-stroke: thick;
@@ -46,3 +46,4 @@
     width: 138px;
     margin: auto;
 }
+
