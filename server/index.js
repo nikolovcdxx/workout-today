@@ -4,7 +4,7 @@ const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 
 const userController = require('./controllers/users');
-//const workoutController = require('./controllers/workout');
+const workoutController = require('./controllers/workouts');
 
 const connectionString = 'mongodb://localhost:27017/workout';
 const port = 3005;
@@ -36,7 +36,7 @@ async function start() {
     app.use(express.json());
     app.get('/', (req, res) => res.send('Welcome my friends!'));
     app.use('/users', userController);
-    //app.use('/workout', workoutController);
+    app.use('/data/workouts', workoutController);
 
     app.listen(port, () => {
         console.log('Rest service started on port 3005 (http://localhost:3005)');

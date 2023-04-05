@@ -18,7 +18,18 @@ function isGuest() {
     };
 }
 
+function isOwner() {
+    return (req, res, next) => {
+        if (req.user && req.user._id == res.locals.workout.owner) {
+            next();
+        } else {
+            res.status(403).json({ msg: 'You cannot modify this record' });
+        }
+    };
+}
+
 module.exports = {
     isAuth,
-    isGuest
+    isGuest,
+    isOwner
 };
