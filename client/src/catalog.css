@@ -1,0 +1,112 @@
+:root {
+    --primary-color: 120;
+    --primary-s: 40%;
+    --primary-l: 55%;
+
+    --action-color: 300;
+    --action-s: 40%;
+    --action-l: 55%;
+
+    --round: 0;
+    --shadow: 8px 8px 16px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pad-med {
+    padding: 8px 16px;
+}
+
+.spaced>* {
+    margin: 32px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.catalog {
+    list-style: none;
+    padding: 0;
+}
+
+.catalog.cards {
+    margin-left: 16px;
+    margin-right: -16px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.catalog.cards::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.catalog.cards li {
+    float: left;
+    width: 284px;
+    margin: 16px;
+    margin-top: 0;
+}
+
+.catalog.cards li>main {
+    height: 200px;
+    overflow: hidden;
+}
+
+.catalog.cards h2 {
+    height: 52px;
+    overflow: hidden;
+}
+
+.catalog.cards footer {
+    overflow: hidden;
+}
+
+.align-center {
+    text-align: center;
+    overflow: hidden;
+}
+
+.img-thumb {
+    display: block;
+    max-height: 200px;
+    margin: auto;
+    object-fit: contain;
+}
+
+.item {
+    box-shadow: var(--shadow);
+    border-radius: var(--round);
+    overflow: hidden;
+}
+
+.item p {
+    margin-bottom: 16px;
+}
+
+.action {
+    display: inline-block;
+    border: none;
+    padding: 8px 16px;
+    margin: 4px 8px;
+    text-decoration: none;
+}
+
+#catalog-section h1, #catalog-section header {
+    background-color: hsl(var(--primary-color), var(--primary-s), var(--primary-l));
+}
+
+#catalog-section footer {
+    background-color: hsl(var(--primary-color), var(--primary-s), calc(var(--primary-l) - 20%));
+    color: white;
+}
+
+.action {
+    background-color: hsl(var(--action-color), var(--action-s), calc(var(--action-l) - 20%));
+    color: white;
+}
+
+.action:hover {
+    background-color: hsl(var(--action-color), var(--action-s), var(--action-l));
+    cursor: pointer;
+    color: white;
+}
