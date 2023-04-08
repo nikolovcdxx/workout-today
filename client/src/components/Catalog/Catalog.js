@@ -1,69 +1,31 @@
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+import { WorkoutContext } from '../../contexts/WorkoutContext';
+import CatalogItem from './CatalogItem/CatalogItem';
 
 
 export default function Catalog() {
+    const { workouts } = useContext(WorkoutContext);
+    const noWorkouts =
+        <div style={{width: '96%', marginRight: '32px'}} className="item pad-large align-center">
+            <p>Nothing has been listed yet. Be the first!</p>
+            <div>
+                <Link className="action" to="/create">
+                    Create Workout
+                </Link>
+            </div>
+        </div>;
 
     return (
         <section id="catalog-section" className="spaced">
             <h1 className="item">Workouts</h1>
             <ul className="catalog cards">
-                <li className="item">
-                    <header className="pad-med">
-                        <h2>Fishing Boat</h2>
-                    </header>
-                    <div className="align-center">
-                        <img className="img-thumb" src="/pull-day-exercises.jpg" alt=""/>
-                    </div>
-                    <footer className="align-center pad-med">
-                        <p>
-                            Current price: <strong>$5000</strong>
-                        </p>
-                        <a className="action" href="/">
-                            See details
-                        </a>
-                    </footer>
-                </li>
-                <li className="item">
-                    <header className="pad-med">
-                        <h2>Wardrobe</h2>
-                    </header>
-                    <div className="align-center">
-                        <img className="img-thumb" src="/pull-day-exercises.jpg" alt=""/>
-                    </div>
-                    <footer className="align-center pad-med">
-                        <p>
-                            Current price: <strong>$150</strong>
-                        </p>
-                        <a className="action" href="/">
-                            See details
-                        </a>
-                    </footer>
-                </li>
-                <li className="item">
-                    <header className="pad-med">
-                        <h2>Record Player</h2>
-                    </header>
-                    <div className="align-center">
-                        <img className="img-thumb" src="/pull-day-exercises.jpg" alt=""/>
-                    </div>
-                    <footer className="align-center pad-med">
-                        <p>
-                            Current price: <strong>$400</strong>
-                        </p>
-                        <a className="action" href="/">
-                            See details
-                        </a>
-                    </footer>
-                </li>
+                {workouts.length > 0
+                    ? workouts.map(x => <CatalogItem key={x._id} workout={x} />)
+                    : noWorkouts
+                }
             </ul>
-            {/* If there are no auctions to display */}
-            <div className="item pad-large align-center">
-                <p>Nothing has been listed yet. Be the first!</p>
-                <div>
-                    <a className="action" href="/">
-                        Publish Auction
-                    </a>
-                </div>
-            </div>
         </section>
     );
 };

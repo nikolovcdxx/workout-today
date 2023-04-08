@@ -1,13 +1,38 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+
+import { WorkoutContext } from '../../../contexts/WorkoutContext';
+import * as workoutService from '../../../services/workoutService';
 
 export default function Push() {
+    const navigate = useNavigate();
+    const { addWorkout } = useContext(WorkoutContext);
 
     const generateHandler = (e) => {
         e.preventDefault();
+        const exercises = Object.fromEntries(new FormData(e.target));
 
-        const values = Object.fromEntries(new FormData(e.target));
+        try {
+            if (Object.values(exercises).includes('none')) {
+                throw new Error('All exercises must be selected');
+            }
 
-        Object.values(values).includes('none') ? alert('All exercises must be selected') : console.log(values);
+            const workoutData = {
+                type: 'push',
+                exercises
+            };
+
+            workoutService.create(workoutData)
+                .then(result => {
+                    addWorkout(result);
+                });
+
+            navigate('/workouts');
+        } catch (err) {
+            alert(err.message);
+        }
+
     };
 
     const [upperChest, setUpperChest] = useState('');

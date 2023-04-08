@@ -17,7 +17,7 @@ export default function Navigation() {
             <Link className={styles.active} to="/">
                 Fitness
             </Link>
-            <NavLink to="/catalog"
+            <NavLink to="/workouts"
                 style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}
             >
                 All Workouts Today
