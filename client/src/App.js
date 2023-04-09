@@ -34,13 +34,6 @@ function App() {
         setAuth({});
     };
 
-    const addWorkout = (workoutData) => {
-        setWorkouts(state => [
-            ...state,
-            workoutData
-        ]);
-    };
-
     useEffect(() => {
         workoutService.getAll()
             .then(result => {
@@ -48,12 +41,23 @@ function App() {
             });
     }, []);
 
+    const workoutAdd = (workoutData) => {
+        setWorkouts(state => [
+            ...state,
+            workoutData
+        ]);
+    };
+
+    const workoutEdit = (workoutId, workoutData) => {
+        setWorkouts(state => state.map(x => x._id === workoutId ? workoutData : x));
+    };
+
     return (
         <AuthContext.Provider value={{ user: auth, userLogin, userLogout }}>
             <div className="App">
                 <Navigation />
 
-                <WorkoutContext.Provider value={{ workouts, addWorkout }}>
+                <WorkoutContext.Provider value={{ workouts, workoutAdd, workoutEdit }}>
                     <Routes>
                         <Route path="/" element={<h2>SNIMKA NA SHTANGI HERE</h2>} />
                         <Route path="/login" element={<Login />} />

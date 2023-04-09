@@ -4,35 +4,31 @@ import { useContext } from 'react';
 
 import { WorkoutContext } from '../../../contexts/WorkoutContext';
 import * as workoutService from '../../../services/workoutService';
+import workoutCreation from '../../../services/workoutCreation';
+import videoService from '../../../services/videoService';
 
 export default function Push() {
     const navigate = useNavigate();
-    const { addWorkout } = useContext(WorkoutContext);
+    const { workouts, workoutAdd } = useContext(WorkoutContext);
 
     const generateHandler = (e) => {
         e.preventDefault();
-        const exercises = Object.fromEntries(new FormData(e.target));
-
         try {
-            if (Object.values(exercises).includes('none')) {
-                throw new Error('All exercises must be selected');
-            }
+            const workoutData = workoutCreation(e, workouts, 'push');
 
-            const workoutData = {
-                type: 'push',
-                exercises
-            };
+            if (typeof workoutData === 'string') {
+                throw new Error(workoutData);
+            }
 
             workoutService.create(workoutData)
                 .then(result => {
-                    addWorkout(result);
+                    workoutAdd(result);
                 });
 
             navigate('/workouts');
         } catch (err) {
             alert(err.message);
         }
-
     };
 
     const [upperChest, setUpperChest] = useState('');
@@ -45,28 +41,27 @@ export default function Push() {
 
     const onClickVideoHandler = (e) => {
         const id = e.target.id;
-
         switch (id) {
             case 'up-chest':
-                upperChest ? console.log('video', upperChest) : alert('Not selected exercise!');
+                upperChest ? videoService(upperChest) : alert('Not selected exercise!');
                 break;
             case 'mid-chest':
-                middleChest ? console.log('video', middleChest) : alert('Not selected exercise!');
+                middleChest ? videoService(middleChest)  : alert('Not selected exercise!');
                 break;
             case 'low-chest':
-                lowerChest ? console.log('video', lowerChest) : alert('Not selected exercise!');
+                lowerChest ? videoService(lowerChest) : alert('Not selected exercise!');
                 break;
             case 'tri1':
-                triceps1 ? console.log('video', triceps1) : alert('Not selected exercise!');
+                triceps1 ? videoService(triceps1) : alert('Not selected exercise!');
                 break;
             case 'tri2':
-                triceps2 ? console.log('video', triceps2) : alert('Not selected exercise!');
+                triceps2 ? videoService(triceps2) : alert('Not selected exercise!');
                 break;
             case 'f-delt':
-                frontDelt ? console.log('video', frontDelt) : alert('Not selected exercise!');
+                frontDelt ? videoService(frontDelt) : alert('Not selected exercise!');
                 break;
             case 's-delt':
-                sideDelt ? console.log('video', sideDelt) : alert('Not selected exercise!');
+                sideDelt ? videoService(sideDelt) : alert('Not selected exercise!');
                 break;
             default:
                 break;
@@ -101,7 +96,7 @@ export default function Push() {
                         <select name="lower-chest" id="lower-chest" value={lowerChest} onChange={(e) => setLowerChest(e.target.value)}>
                             <option value="none" hidden>Select an Exercise</option>
                             <option value="slight-decline-dumbbell-press">Slight Decline Dumbbell Press</option>
-                            <option value="high-to-low-cable-fly">Low To High Cable Fly</option>
+                            <option value="high-to-low-cable-fly">High To Low Cable Fly</option>
                             <option value="chest-dips">Chest Dips</option>
                         </select>
                         <button type="button" id="low-chest" onClick={onClickVideoHandler}>how to do it properly</button>

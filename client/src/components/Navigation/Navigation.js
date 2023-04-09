@@ -18,7 +18,7 @@ export default function Navigation() {
                 Fitness
             </Link>
             <NavLink to="/workouts"
-                style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}
+                style={({ isActive }) => { return isActive ? { backgroundColor: '#620000' } : undefined; }}
             >
                 All Workouts Today
             </NavLink>
@@ -26,7 +26,7 @@ export default function Navigation() {
             {user.accessToken
                 ? <div className={styles.user}>
                     <NavLink to="/create"
-                        style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}
+                        style={({ isActive }) => { return isActive ? { backgroundColor: '#620000' } : undefined; }}
                     >
                         Create Your Workout
                     </NavLink>
@@ -35,7 +35,7 @@ export default function Navigation() {
                             Welcome, {usernameCap(user.username)}
                         </span>
                         <NavLink to="/profile"
-                            style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}
+                            style={({ isActive }) => { return isActive ? { backgroundColor: '#620000' } : undefined; }}
                         >
                             My Workout
                         </NavLink>
@@ -45,12 +45,12 @@ export default function Navigation() {
                 : <div className={styles.guest}>
                     <div className={styles.profile}>
                         <NavLink to="/login"
-                            style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}
+                            style={({ isActive }) => { return isActive ? { backgroundColor: '#620000' } : undefined; }}
                         >
                             Login
                         </NavLink>
                         <NavLink to="/register"
-                            style={({ isActive }) => { return isActive ? { backgroundColor: 'gray' } : undefined; }}
+                            style={({ isActive }) => { return isActive ? { backgroundColor: '#620000' } : undefined; }}
                         >
                             Register
                         </NavLink>
