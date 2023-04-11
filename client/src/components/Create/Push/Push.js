@@ -43,25 +43,25 @@ export default function Push() {
         const id = e.target.id;
         switch (id) {
             case 'up-chest':
-                upperChest ? videoService(upperChest) : alert('Not selected exercise!');
+                videoService(upperChest);
                 break;
             case 'mid-chest':
-                middleChest ? videoService(middleChest)  : alert('Not selected exercise!');
+                videoService(middleChest);
                 break;
             case 'low-chest':
-                lowerChest ? videoService(lowerChest) : alert('Not selected exercise!');
+               videoService(lowerChest);
                 break;
             case 'tri1':
-                triceps1 ? videoService(triceps1) : alert('Not selected exercise!');
+                videoService(triceps1);
                 break;
             case 'tri2':
-                triceps2 ? videoService(triceps2) : alert('Not selected exercise!');
+                videoService(triceps2);
                 break;
             case 'f-delt':
-                frontDelt ? videoService(frontDelt) : alert('Not selected exercise!');
+                videoService(frontDelt);
                 break;
             case 's-delt':
-                sideDelt ? videoService(sideDelt) : alert('Not selected exercise!');
+                videoService(sideDelt);
                 break;
             default:
                 break;
@@ -81,7 +81,7 @@ export default function Push() {
                             <option value="low-to-high-cable-fly">Low To High Cable Fly</option>
                             <option value="incline-chest-press-machine">Incline Chest Press Machine</option>
                         </select>
-                        <button type="button" id="up-chest" onClick={onClickVideoHandler}>how to do it properly</button>
+                        <button type="button" id="up-chest" onClick={onClickVideoHandler}>How To Do It Properly</button>
 
                         <label htmlFor="middle-chest">MIDDLE CHEST</label>
                         <select name="middle-chest" id="middle-chest" value={middleChest} onChange={(e) => setMiddleChest(e.target.value)}>
@@ -90,7 +90,7 @@ export default function Push() {
                             <option value="standing-cable-fly">Standing Cable Fly</option>
                             <option value="pec-deck-machine">Pec Deck Machine</option>
                         </select>
-                        <button type="button" id="mid-chest" onClick={onClickVideoHandler}>how to do it properly</button>
+                        <button type="button" id="mid-chest" onClick={onClickVideoHandler}>How To Do It Properly</button>
 
                         <label htmlFor="lower-chest">LOWER CHEST</label>
                         <select name="lower-chest" id="lower-chest" value={lowerChest} onChange={(e) => setLowerChest(e.target.value)}>
@@ -99,32 +99,29 @@ export default function Push() {
                             <option value="high-to-low-cable-fly">High To Low Cable Fly</option>
                             <option value="chest-dips">Chest Dips</option>
                         </select>
-                        <button type="button" id="low-chest" onClick={onClickVideoHandler}>how to do it properly</button>
-
+                        <button type="button" id="low-chest" onClick={onClickVideoHandler}>How To Do It Properly</button>
                     </li>
                     <li className="push-card">
                         <label htmlFor="triceps1">TRICEPS</label>
                         <select name="triceps1" id="triceps1" value={triceps1} onChange={(e) => setTriceps1(e.target.value)}>
                             <option value="none" hidden>Select an Exercise</option>
-                            <option value="lying-tricep-extension">Lying Tricep Extension</option>
-                            <option value="incline-dumbbell-powerbombs">Incline Dumbbell Powerbombs</option>
-                            <option value="rocking-pushdowns">Rocking Pushdowns</option>
-                            <option value="close-grip-bench-press">Close Grip Bench Press</option>
-                            <option value="dumbbell-kickbacks">Dumbbell Kickbacks</option>
+                            <option value="lying-tricep-extension" disabled={triceps2 === 'lying-tricep-extension'}>Lying Tricep Extension</option>
+                            <option value="incline-dumbbell-powerbombs" disabled={triceps2 === 'incline-dumbbell-powerbombs'}>Incline Dumbbell Powerbombs</option>
+                            <option value="rocking-pushdowns" disabled={triceps2 === 'rocking-pushdowns'}>Rocking Pushdowns</option>
+                            <option value="close-grip-bench-press" disabled={triceps2 === 'close-grip-bench-press'}>Close Grip Bench Press</option>
+                            <option value="dumbbell-kickbacks" disabled={triceps2 === 'dumbbell-kickbacks'}>Dumbbell Kickbacks</option>
                         </select>
-                        <button type="button" id="tri1" onClick={onClickVideoHandler}>how to do it properly</button>
+                        <button type="button" id="tri1" onClick={onClickVideoHandler}>How To Do It Properly</button>
 
-                        <label htmlFor="triceps2">TRICEPS</label>
                         <select name="triceps2" id="triceps2" value={triceps2} onChange={(e) => setTriceps2(e.target.value)}>
                             <option value="none" hidden>Select an Exercise</option>
-                            <option value="lying-tricep-extension">Lying Tricep Extension</option>
-                            <option value="incline-dumbbell-powerbombs">Incline Dumbbell Powerbombs</option>
-                            <option value="rocking-pushdowns">Rocking Pushdowns</option>
-                            <option value="close-grip-bench-press">Close Grip Bench Press</option>
-                            <option value="dumbbell-kickbacks">Dumbbell Kickbacks</option>
+                            <option value="lying-tricep-extension" disabled={triceps1 === 'lying-tricep-extension'}>Lying Tricep Extension</option>
+                            <option value="incline-dumbbell-powerbombs" disabled={triceps1 === 'incline-dumbbell-powerbombs'}>Incline Dumbbell Powerbombs</option>
+                            <option value="rocking-pushdowns" disabled={triceps1 === 'rocking-pushdowns'}>Rocking Pushdowns</option>
+                            <option value="close-grip-bench-press" disabled={triceps1 === 'close-grip-bench-press'}>Close Grip Bench Press</option>
+                            <option value="dumbbell-kickbacks" disabled={triceps1 === 'dumbbell-kickbacks'}>Dumbbell Kickbacks</option>
                         </select>
-                        <button type="button" id="tri2" onClick={onClickVideoHandler}>how to do it properly</button>
-
+                        <button type="button" id="tri2" onClick={onClickVideoHandler}>How To Do It Properly</button>
                     </li>
                     <li className="push-card">
                         <label htmlFor="front-delt">SHOULDER FRONT DELT</label>
@@ -134,7 +131,7 @@ export default function Push() {
                             <option value="dumbbell-front-raises">Dumbbell Front Raises</option>
                             <option value="shoulder-press-machine">Shoulder Press Machine</option>
                         </select>
-                        <button type="button" id="f-delt" onClick={onClickVideoHandler}>how to do it properly</button>
+                        <button type="button" id="f-delt" onClick={onClickVideoHandler}>How To Do It Properly</button>
 
                         <label htmlFor="side-delt">SHOULDER SIDE DELT</label>
                         <select name="side-delt" id="side-delt" value={sideDelt} onChange={(e) => setSideDelt(e.target.value)}>
@@ -143,10 +140,9 @@ export default function Push() {
                             <option value="lying-incline-lateral-raise">Lying Incline Lateral Raise</option>
                             <option value="cable-lateral-raise">Cable Lateral Raise</option>
                         </select>
-                        <button type="button" id="s-delt" onClick={onClickVideoHandler}>how to do it properly</button>
+                        <button type="button" id="s-delt" onClick={onClickVideoHandler}>How To Do It Properly</button>
                     </li>
                 </ul>
-
             </section>
             <button className="btn-generate">GENERATE</button>
         </form>

@@ -1,5 +1,5 @@
 const videoService = (fileName) => {
-    console.log('video', fileName);
+    fileName ? console.log('video', fileName) : alert('Not selected exercise!');
 };
 
 export default videoService;

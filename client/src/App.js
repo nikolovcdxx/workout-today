@@ -17,6 +17,7 @@ import Login from './components/Login/Login';
 import Logout from './components/Logout/Logout';
 import CreateSelection from './components/Create/CreateSelection/CreateSelection';
 import Push from './components/Create/Push/Push';
+import Pull from './components/Create/Pull/Pull';
 import Edit from './components/Edit/Edit';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
@@ -65,7 +66,7 @@ function App() {
                         <Route path="/logout" element={<Logout />} />
                         <Route path="/create" element={<CreateSelection />} />
                         <Route path="/create/push" element={<Push />} />
-                        <Route path="/create/pull" element={<h2>GRUBx4 BICEPSx2 ZADNO RAMOx1</h2>} />
+                        <Route path="/create/pull" element={<Pull />} />
                         <Route path="/create/legs" element={<h2>LEGSx4</h2>} />
                         <Route path="/workouts" element={<Catalog />} />
                         <Route path="/workouts/:workoutId" element={<h2>DETAILITE ZA TRENIROVKATA NA CHOBANIN X</h2>} />

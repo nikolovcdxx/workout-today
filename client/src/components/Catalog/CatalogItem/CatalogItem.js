@@ -13,7 +13,7 @@ export default function CatalogItem({ workout }) {
         <li className="item">
             <header className="pad-med">
                 {isMyWorkout
-                    ? <h2 style={{ color: 'lawngreen' }}>{'Your workout'}</h2>
+                    ? <h2 style={{ color: 'lawngreen' }}>{'My workout'}</h2>
                     : <h2>{`${usernameCap(workout.ownerName)}'s workout`}</h2>
                 }
             </header>
@@ -22,7 +22,7 @@ export default function CatalogItem({ workout }) {
             </div>
             <footer className="align-center pad-med">
                 {isMyWorkout
-                    ? <span>Your choise today: <div><strong>{workout.type.toUpperCase()}</strong></div></span>
+                    ? <span>My choise today: <div><strong>{workout.type.toUpperCase()}</strong></div></span>
                     : <span>His choise today: <div><strong>{workout.type.toUpperCase()}</strong></div></span>
                 }
                 <Link className="action" to={`/workouts/${workout._id}`}>
