@@ -15,6 +15,8 @@ const workoutReducer = (state, action) => {
             return state.map(x => x._id === action.workoutId ? action.payload : x);
         case 'REMOVE_WORKOUT':
             return state.filter(x => x._id !== action.workoutId);
+        case 'LIKE_WORKOUT':
+            return state.map(x => x._id === action.workoutId ? {...x, likedBy: [...x.likedBy, action.userId]} : x);
         default:
             return state;
     }
@@ -72,8 +74,16 @@ export const WorkoutProvider = ({
         });
     };
 
+    const workoutLike = (workoutId, userId) => {
+        dispatch({
+            type: 'LIKE_WORKOUT',
+            workoutId,
+            userId
+        });
+    };
+
     return (
-        <WorkoutContext.Provider value={{ workouts, workoutAdd, selectWorkout, workoutEdit, fetchWorkoutDetails, workoutRemove }}>
+        <WorkoutContext.Provider value={{ workouts, workoutAdd, selectWorkout, workoutEdit, fetchWorkoutDetails, workoutRemove, workoutLike }}>
             {children}
         </WorkoutContext.Provider>
     );

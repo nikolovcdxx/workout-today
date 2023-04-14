@@ -11,7 +11,7 @@ import * as workoutService from '../../services/workoutService';
 export default function Details() {
     const navigate = useNavigate();
 
-    const { selectWorkout, workoutRemove, fetchWorkoutDetails } = useContext(WorkoutContext);
+    const { selectWorkout, workoutRemove, fetchWorkoutDetails, workoutLike } = useContext(WorkoutContext);
     const { workoutId } = useParams();
 
     const currentWorkout = selectWorkout(workoutId);
