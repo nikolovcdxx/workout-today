@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
 
 import { WorkoutContext } from '../../../contexts/WorkoutContext';
 import * as workoutService from '../../../services/workoutService';

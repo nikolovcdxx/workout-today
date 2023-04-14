@@ -7,8 +7,9 @@ const schema = new Schema({
     exercises: {
         type: Object, requided: true
     },
-    owner: { type: ObjectId, ref: 'User' },
-    ownerName: { type: String }
+    owner: { type: ObjectId, ref: 'User', required: true },
+    ownerName: { type: String },
+    likedBy: { type: [ObjectId], ref: 'User', default: [] },
 });
 
 const Workout = model('Workout', schema);

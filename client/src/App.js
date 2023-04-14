@@ -1,14 +1,7 @@
-import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { AuthContext } from './contexts/AuthContext';
-import { WorkoutContext } from './contexts/WorkoutContext';
-import * as workoutService from './services/workoutService';
-
-import './form.css';
-import './createSelection.css';
-import './push.css';
-import './catalog.css';
+import { AuthProvider } from './contexts/AuthContext';
+import { WorkoutProvider } from './contexts/WorkoutContext';
 
 import Catalog from './components/Catalog/Catalog';
 import Navigation from './components/Navigation/Navigation';
@@ -20,46 +13,22 @@ import Push from './components/Create/Push/Push';
 import Pull from './components/Create/Pull/Pull';
 import Legs from './components/Create/Legs/Legs';
 import Edit from './components/Edit/Edit';
-import { useLocalStorage } from './hooks/useLocalStorage';
+import Details from './components/Details/Details';
 
+import './form.css';
+import './createSelection.css';
+import './push.css';
+import './catalog.css';
+import './details.css';
 
 function App() {
 
-    const [auth, setAuth] = useLocalStorage('auth', {});
-    const [workouts, setWorkouts] = useState([]);
-
-    const userLogin = (authData) => {
-        setAuth(authData);
-    };
-
-    const userLogout = () => {
-        setAuth({});
-    };
-
-    useEffect(() => {
-        workoutService.getAll()
-            .then(result => {
-                setWorkouts(result);
-            });
-    }, []);
-
-    const workoutAdd = (workoutData) => {
-        setWorkouts(state => [
-            ...state,
-            workoutData
-        ]);
-    };
-
-    const workoutEdit = (workoutId, workoutData) => {
-        setWorkouts(state => state.map(x => x._id === workoutId ? workoutData : x));
-    };
-
     return (
-        <AuthContext.Provider value={{ user: auth, userLogin, userLogout }}>
+        <AuthProvider>
             <div className="App">
                 <Navigation />
 
-                <WorkoutContext.Provider value={{ workouts, workoutAdd, workoutEdit }}>
+                <WorkoutProvider>
                     <Routes>
                         <Route path="/" element={<h2>SNIMKA NA SHTANGI HERE</h2>} />
                         <Route path="/login" element={<Login />} />
@@ -70,14 +39,14 @@ function App() {
                         <Route path="/create/pull" element={<Pull />} />
                         <Route path="/create/legs" element={<Legs />} />
                         <Route path="/workouts" element={<Catalog />} />
-                        <Route path="/workouts/:workoutId" element={<h2>DETAILITE ZA TRENIROVKATA NA CHOBANIN X</h2>} />
+                        <Route path="/workouts/:workoutId" element={<Details />} />
                         <Route path="/workouts/:workoutId/edit" element={<Edit />} />
-                        <Route path="/profile" element={<h2>TRENIROVKATA ZA DNES</h2>} />
+                        <Route path="/my-workout" element={<h2>TRENIROVKATA ZA DNES</h2>} />
                         <Route path="*" element={<h2>404 NOT FOUND MADAFAKA</h2>} />
                     </Routes>
-                </WorkoutContext.Provider>
+                </WorkoutProvider>
             </div>
-        </AuthContext.Provider>
+        </AuthProvider>
     );
 }
 

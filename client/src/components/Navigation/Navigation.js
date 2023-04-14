@@ -14,13 +14,15 @@ export default function Navigation() {
 
     return (
         <nav>
-            <Link className={styles.active} to="/">
-                Fitness
-            </Link>
+            <div>
+                <Link className={styles.active} to="/">
+                    WORKOUT TODAY
+                </Link>
+            </div>
             <NavLink to="/workouts"
                 style={({ isActive }) => { return isActive ? { backgroundColor: '#620000' } : undefined; }}
             >
-                All Workouts Today
+                All Workouts
             </NavLink>
 
             {user.accessToken

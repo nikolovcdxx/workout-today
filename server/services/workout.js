@@ -35,10 +35,20 @@ async function getOwnerUsername(ownerId) {
     return data.username;
 }
 
+async function like(workoutId, userId) {
+    const workout = await Workout.findById(workoutId);
+    if (workout.likedBy.includes(userId)) {
+        throw new Error('User is already part of the appliers');
+    }
+    workout.likedBy.push(userId); 
+    await workout.save();
+}
+
 module.exports = {
     getAll,
     create,
     getById,
     update,
-    deleteById
+    deleteById,
+    like
 };

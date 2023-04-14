@@ -25,9 +25,15 @@ export default function CatalogItem({ workout }) {
                     ? <span>My choise today: <div><strong>{workout.type.toUpperCase()}</strong></div></span>
                     : <span>His choise today: <div><strong>{workout.type.toUpperCase()}</strong></div></span>
                 }
-                <Link className="action" to={`/workouts/${workout._id}`}>
-                    See details
-                </Link>
+                {isMyWorkout
+                    ? <Link className="action" to={'/my-workout'}>
+                        See details
+                    </Link>
+                    : <Link className="action" to={`/workouts/${workout._id}`}>
+                        See details
+                    </Link>
+                }
+
             </footer>
         </li>
     );

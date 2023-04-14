@@ -1,39 +1,32 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import * as workoutService from '../../services/workoutService';
 import { WorkoutContext } from '../../contexts/WorkoutContext';
 
 export default function Edit() {
-    const [currentWorkout, setCurrentWorkout] = useState({});  
-    const { workoutEdit } = useContext(WorkoutContext);
-
-    const workoutId = useParams();
     const navigate = useNavigate();
+    const { workoutEdit, selectWorkout } = useContext(WorkoutContext);
+    const workoutId = useParams();
 
-    useEffect(() => {
-        workoutService.getOne(workoutId)
-            .then(workoutData => {
-                setCurrentWorkout(workoutData);
-            }, []);
+    const currentWorkout = selectWorkout(workoutId);
 
-        const generateHandler = (e) => {
-            e.preventDefault();
-            const exercises = Object.fromEntries(new FormData(e.target));
+    const generateHandler = (e) => {
+        e.preventDefault();
+        const exercises = Object.fromEntries(new FormData(e.target));
 
-            const workoutData = {
-                type: currentWorkout.type,
-                exercises
-            };
-
-            workoutService.edit(workoutId, workoutData)
-                .then(result => {
-                    workoutEdit(workoutId, result);
-                    navigate(`/workouts/${workoutId}`);
-                });
-
+        const workoutData = {
+            type: currentWorkout.type,
+            exercises
         };
-    });
+
+        workoutService.edit(workoutId, workoutData)
+            .then(result => {
+                workoutEdit(workoutId, result);
+                navigate(`/workouts/${workoutId}`);
+            });
+
+    };
 
     return <h2>EDIT FORMA ZA TRENIROVKATA NA CHOBANIN X</h2>;
 }
