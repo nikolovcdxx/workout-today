@@ -1,6 +1,6 @@
 import capitalize from '../../../services/capitalize';
 
-export default function DetailsLegs({ ...exercises }) {
+export default function ProfileLegs({ ...exercises }) {
     return (
         <>
             <div id="info-wrapper">

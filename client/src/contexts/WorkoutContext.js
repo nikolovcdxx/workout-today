@@ -44,6 +44,10 @@ export const WorkoutProvider = ({
         return workouts.find(x => x._id === workoutId) || {};
     };
 
+    const myWorkout = (userId) => {
+        return workouts.find(x => x.owner === userId) || {};
+    };
+
     const fetchWorkoutDetails = (workoutId, workoutDetails) => {
         dispatch({
             type: 'FETCH_WORKOUT_DETAILS',
@@ -83,7 +87,7 @@ export const WorkoutProvider = ({
     };
 
     return (
-        <WorkoutContext.Provider value={{ workouts, workoutAdd, selectWorkout, workoutEdit, fetchWorkoutDetails, workoutRemove, workoutLike }}>
+        <WorkoutContext.Provider value={{ workouts, workoutAdd, selectWorkout, workoutEdit, fetchWorkoutDetails, workoutRemove, workoutLike, myWorkout }}>
             {children}
         </WorkoutContext.Provider>
     );

@@ -107,3 +107,29 @@
   width: 100%;
   font-style: italic;
 }
+
+.details-loading {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+#action-buttons .btn-details {
+  border: none;
+  margin: auto 50px;
+  font-size: 22px;
+  width: 130px;
+  padding: 10px;
+  text-align: center;
+  color: black;
+  font-weight: 500;
+  background: #CBF6FF;
+  font-style: italic;
+  font-family: auto;
+}
+
+#action-buttons .btn-details:hover {
+  transform: rotateX(15deg);
+  box-shadow: 0 15px 15px #7db9d7;
+  cursor: pointer;
+}

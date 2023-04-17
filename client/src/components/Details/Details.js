@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { WorkoutContext } from '../../contexts/WorkoutContext';
 
 import DetailsPush from './DetailsPush/DetailsPush';
@@ -9,9 +9,7 @@ import DetailsLegs from './DetailsLegs/DetailsLegs';
 import * as workoutService from '../../services/workoutService';
 
 export default function Details() {
-    const navigate = useNavigate();
-
-    const { selectWorkout, workoutRemove, fetchWorkoutDetails, workoutLike } = useContext(WorkoutContext);
+    const { selectWorkout, fetchWorkoutDetails, workoutLike } = useContext(WorkoutContext);
     const { workoutId } = useParams();
 
     const currentWorkout = selectWorkout(workoutId);
@@ -31,18 +29,6 @@ export default function Details() {
         })();
     }, []);
 
-    const workoutDeleteHandler = () => {
-        const confirmation = window.confirm('Are you sure you want to delete this workout?');
-
-        if (confirmation) {
-            workoutService.remove(workoutId)
-                .then(() => {
-                    workoutRemove(workoutId);
-                    navigate('/catalog');
-                });
-        }
-    };
-
     return (
         <section id="details">
             {currentWorkout.type
@@ -60,21 +46,16 @@ export default function Details() {
                     {currentWorkout.type === 'legs' &&
                         <DetailsLegs {...currentWorkout.exercises} />
                     }
-
-                    {/*Edit and Delete are only for creator*/}
+                    <div id="likes">
+                        Likes: <span id="likes-count">0</span>
+                    </div>
                     <div id="action-buttons">
-                        <Link to="" id="like-btn">
+                        <Link to="" className="btn-details">
                             Like
-                        </Link>
-                        <Link to="" id="edit-btn">
-                            Edit
-                        </Link>
-                        <Link to="" id="delete-btn">
-                            Delete
                         </Link>
                     </div>
                 </div>
-                : 'Loading...'}
+                : <h2 className='details-loading'>Loading...</h2>}
         </section>
     );
 }

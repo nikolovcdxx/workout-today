@@ -1,6 +1,6 @@
 import capitalize from '../../../services/capitalize';
 
-export default function DetailsPull({ ...exercises }) {
+export default function ProfilePull({ ...exercises }) {
     return (
         <>
             <div id="info-wrapper">

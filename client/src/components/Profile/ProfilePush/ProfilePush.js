@@ -1,6 +1,6 @@
 import capitalize from '../../../services/capitalize';
 
-export default function DetailsPush({ ...exercises }) {
+export default function ProfilePush({ ...exercises }) {
     return (
         <>
             <div id="info-wrapper">
