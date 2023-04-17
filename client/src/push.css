@@ -31,6 +31,7 @@
     border-radius: 30px;
     font-size: xx-large;
     cursor: pointer;
+    font-style: italic;
 }
 
 .push-card-wrapper select {
@@ -47,3 +48,14 @@
     margin: auto;
 }
 
+.card-title {
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: dimgrey;
+    text-decoration-style: double;
+    text-decoration-thickness: from-font;
+    text-shadow: 0 0 #c40f0f;
+    -webkit-text-stroke-width: thin;
+    font-family: math;
+    font-size: xx-large;
+}

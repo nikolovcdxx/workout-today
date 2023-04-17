@@ -36,7 +36,7 @@ export default function Navigation() {
                         <span>
                             Welcome, {usernameCap(user.username)}
                         </span>
-                        <NavLink to="/profile"
+                        <NavLink to="/my-workout"
                             style={({ isActive }) => { return isActive ? { backgroundColor: '#620000' } : undefined; }}
                         >
                             My Workout

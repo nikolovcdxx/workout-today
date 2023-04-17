@@ -72,7 +72,7 @@ export default function Push() {
     return (
         <form onSubmit={generateHandler}>
             <section id="dashboard">
-                <h2>PULL EXERCISES</h2>
+                <h2 className='card-title'>PULL EXERCISES</h2>
                 <ul className="push-card-wrapper">
                     <li className="push-card">
                         <label htmlFor="upper-back1">UPPER BACK</label>

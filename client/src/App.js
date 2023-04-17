@@ -14,12 +14,14 @@ import Pull from './components/Create/Pull/Pull';
 import Legs from './components/Create/Legs/Legs';
 import Edit from './components/Edit/Edit';
 import Details from './components/Details/Details';
+import Home from './components/Home/Home';
 
 import './form.css';
 import './createSelection.css';
 import './push.css';
 import './catalog.css';
 import './details.css';
+import './home.css';
 
 function App() {
 
@@ -30,7 +32,7 @@ function App() {
 
                 <WorkoutProvider>
                     <Routes>
-                        <Route path="/" element={<h2>SNIMKA NA SHTANGI HERE</h2>} />
+                        <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/logout" element={<Logout />} />

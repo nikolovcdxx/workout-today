@@ -1,27 +1,27 @@
+import capitalize from '../../../services/capitalize';
+
 export default function DetailsPull({ ...exercises }) {
-    console.log(exercises);
     return (
         <>
             <div id="info-wrapper">
-                <p>
-                    <strong>Band:</strong>
-                    <span id="details-singer">AC/DC</span>
+                <p className='exercise'>
+                    <strong>Upper Back:</strong>
+                    <span>{capitalize(exercises['upper-back1'])}</span><br />
+                    <span>{capitalize(exercises['upper-back2'])}</span>
                 </p>
-                <p>
-                    <strong>Album name:</strong>
-                    <span id="details-album">Back in Black</span>
+                <p className='exercise'>
+                    <strong>Lats:</strong>
+                    <span>{capitalize(exercises['lats1'])}</span><br />
+                    <span>{capitalize(exercises['lats2'])}</span>
                 </p>
-                <p>
-                    <strong>Release date:</strong>
-                    <span id="details-release">1980</span>
+                <p className='exercise'>
+                    <strong>Biceps:</strong>
+                    <span>{capitalize(exercises['biceps1'])}</span><br />
+                    <span>{capitalize(exercises['biceps2'])}</span>
                 </p>
-                <p>
-                    <strong>Label:</strong>
-                    <span id="details-label">Epic</span>
-                </p>
-                <p>
-                    <strong>Sales:</strong>
-                    <span id="details-sales">26 million (50 million claimed)</span>
+                <p className='exercise'>
+                    <strong>Rear Delt:</strong>
+                    <span>{capitalize(exercises['rear-delt'])}</span>
                 </p>
             </div>
             <div id="likes">

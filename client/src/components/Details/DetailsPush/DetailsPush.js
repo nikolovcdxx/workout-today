@@ -1,28 +1,33 @@
-export default function DetailsPush({ ...exercises }) {
-    console.log(exercises);
+import capitalize from '../../../services/capitalize';
 
+export default function DetailsPush({ ...exercises }) {
     return (
         <>
             <div id="info-wrapper">
-                <p>
-                    <strong>Band:</strong>
-                    <span id="details-singer">AC/DC</span>
+                <p className='exercise'>
+                    <strong>Upper Chest:</strong>
+                    <span>{capitalize(exercises['upper-chest'])}</span>
                 </p>
-                <p>
-                    <strong>Album name:</strong>
-                    <span id="details-album">Back in Black</span>
+                <p className='exercise'>
+                    <strong>Middle Chest:</strong>
+                    <span>{capitalize(exercises['middle-chest'])}</span>
                 </p>
-                <p>
-                    <strong>Release date:</strong>
-                    <span id="details-release">1980</span>
+                <p className='exercise'>
+                    <strong>Lower Chest:</strong>
+                    <span>{capitalize(exercises['lower-chest'])}</span>
                 </p>
-                <p>
-                    <strong>Label:</strong>
-                    <span id="details-label">Epic</span>
+                <p className='exercise'>
+                    <strong>Triceps:</strong>
+                    <span>{capitalize(exercises['triceps1'])}</span> <br />
+                    <span>{capitalize(exercises['triceps2'])}</span>
                 </p>
-                <p>
-                    <strong>Sales:</strong>
-                    <span id="details-sales">26 million (50 million claimed)</span>
+                <p className='exercise'>
+                    <strong>Front Delt:</strong>
+                    <span>{capitalize(exercises['front-delt'])}</span>
+                </p>
+                <p className='exercise'>
+                    <strong>Side Delt:</strong>
+                    <span>{capitalize(exercises['side-delt'])}</span>
                 </p>
             </div>
             <div id="likes">

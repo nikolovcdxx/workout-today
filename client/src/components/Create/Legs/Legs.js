@@ -33,8 +33,8 @@ export default function Push() {
     const [quadriceps1, setQuadriceps1] = useState('');
     const [quadriceps2, setQuadriceps2] = useState('');
     const [hamstrings, setHamstrings] = useState('');
-    const [glute1, setGlute1] = useState('');
-    const [glute2, setGlute2] = useState('');
+    const [glutes1, setGlutes1] = useState('');
+    const [glutes2, setGlutes2] = useState('');
     const [calves, setCalves] = useState('');
 
 
@@ -51,10 +51,10 @@ export default function Push() {
                 videoService(hamstrings);
                 break;
             case 'gl1':
-                videoService(glute1);
+                videoService(glutes1);
                 break;
             case 'gl2':
-                videoService(glute2);
+                videoService(glutes2);
                 break;
             case 'calf':
                 videoService(calves);
@@ -67,7 +67,7 @@ export default function Push() {
     return (
         <form onSubmit={generateHandler}>
             <section id="dashboard">
-                <h2>LEGS EXERCISES</h2>
+                <h2 className='card-title'>LEGS EXERCISES</h2>
                 <ul className="push-card-wrapper">
                     <li className="push-card">
                         <label htmlFor="quadriceps1">QUADRICEPS (FRONT THIGH)</label>
@@ -102,24 +102,24 @@ export default function Push() {
                         <button type="button" id="hamstring" onClick={onClickVideoHandler}>How To Do It Properly</button>
                     </li>
                     <li className="push-card">
-                        <label htmlFor="glute1">GLUTE (BUTT)</label>
-                        <select name="glute1" id="glute1" value={glute1} onChange={(e) => setGlute1(e.target.value)}>
+                        <label htmlFor="glutes1">GLUTES (BUTT)</label>
+                        <select name="glutes1" id="glutes1" value={glutes1} onChange={(e) => setGlutes1(e.target.value)}>
                             <option value="none" hidden>Select an Exercise</option>
-                            <option value="barbell-hip-thrust" disabled={glute2 === 'barbell-hip-thrust'}>Barbell Hip Thrust</option>
-                            <option value="45°-hip-extension" disabled={glute2 === '45°-hip-extension'}>45° Hip Extension</option>
-                            <option value="deadlift" disabled={glute2 === 'deadlift'}>Deadlift</option>
-                            <option value="cable-pull-throughs" disabled={glute2 === 'cable-pull-throughs'}>Cable Pull Throughs</option>
-                            <option value="glute-medius-kickbacks" disabled={glute2 === 'glute-medius-kickbacks'}>Glute Medius Kickbacks</option>
+                            <option value="barbell-hip-thrust" disabled={glutes2 === 'barbell-hip-thrust'}>Barbell Hip Thrust</option>
+                            <option value="45°-hip-extension" disabled={glutes2 === '45°-hip-extension'}>45° Hip Extension</option>
+                            <option value="deadlift" disabled={glutes2 === 'deadlift'}>Deadlift</option>
+                            <option value="cable-pull-throughs" disabled={glutes2 === 'cable-pull-throughs'}>Cable Pull Throughs</option>
+                            <option value="glute-medius-kickbacks" disabled={glutes2 === 'glute-medius-kickbacks'}>Glute Medius Kickbacks</option>
                         </select>
                         <button type="button" id="gl1" onClick={onClickVideoHandler}>How To Do It Properly</button>
 
-                        <select name="glute2" id="glute2" value={glute2} onChange={(e) => setGlute2(e.target.value)}>
+                        <select name="glutes2" id="glutes2" value={glutes2} onChange={(e) => setGlutes2(e.target.value)}>
                             <option value="none" hidden>Select an Exercise</option>
-                            <option value="barbell-hip-thrust" disabled={glute1 === 'barbell-hip-thrust'}>Barbell Hip Thrust</option>
-                            <option value="45°-hip-extension" disabled={glute1 === '45°-hip-extension'}>45° Hip Extension</option>
-                            <option value="deadlift" disabled={glute1 === 'deadlift'}>Deadlift</option>
-                            <option value="cable-pull-throughs" disabled={glute1 === 'cable-pull-throughs'}>Cable Pull Throughs</option>
-                            <option value="glute-medius-kickbacks" disabled={glute1 === 'glute-medius-kickbacks'}>Glute Medius Kickbacks</option>
+                            <option value="barbell-hip-thrust" disabled={glutes1 === 'barbell-hip-thrust'}>Barbell Hip Thrust</option>
+                            <option value="45°-hip-extension" disabled={glutes1 === '45°-hip-extension'}>45° Hip Extension</option>
+                            <option value="deadlift" disabled={glutes1 === 'deadlift'}>Deadlift</option>
+                            <option value="cable-pull-throughs" disabled={glutes1 === 'cable-pull-throughs'}>Cable Pull Throughs</option>
+                            <option value="glute-medius-kickbacks" disabled={glutes1 === 'glute-medius-kickbacks'}>Glute Medius Kickbacks</option>
                         </select>
                         <button type="button" id="gl2" onClick={onClickVideoHandler}>How To Do It Properly</button>
 
