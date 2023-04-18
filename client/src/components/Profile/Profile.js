@@ -60,7 +60,7 @@ export default function Profile() {
                     }
 
                     <div id="likes">
-                        Likes: <span id="likes-count">0</span>
+                        Likes: <span id="likes-count">{currentWorkout.likedBy.length}</span>
                     </div>
                     <div id="action-buttons">
                         <Link to={`/my-workout/${workoutId}/edit`}>

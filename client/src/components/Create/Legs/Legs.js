@@ -6,6 +6,8 @@ import * as workoutService from '../../../services/workoutService';
 import workoutCreation from '../../../services/workoutCreation';
 import videoService from '../../../services/videoService';
 
+import '../create.css';
+
 export default function Push() {
     const navigate = useNavigate();
     const { workouts, workoutAdd } = useContext(WorkoutContext);

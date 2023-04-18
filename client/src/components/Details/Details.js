@@ -1,22 +1,27 @@
 import { useContext, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { WorkoutContext } from '../../contexts/WorkoutContext';
+import * as workoutService from '../../services/workoutService';
 
 import DetailsPush from './DetailsPush/DetailsPush';
 import DetailsPull from './DetailsPull/DetailsPull';
 import DetailsLegs from './DetailsLegs/DetailsLegs';
 
-import * as workoutService from '../../services/workoutService';
+import './details.css';
 
 export default function Details() {
     const { selectWorkout, fetchWorkoutDetails, workoutLike } = useContext(WorkoutContext);
     const { workoutId } = useParams();
 
     const currentWorkout = selectWorkout(workoutId);
+    const currentUserId = JSON.parse(localStorage.getItem('auth'))._id;
 
+
+    let isLiked;
     let nameCap;
     if (currentWorkout.type) {
+        isLiked = currentWorkout.likedBy.includes(currentUserId) ? true : false;
         nameCap = (u) => {
             return u.charAt(0).toUpperCase() + u.slice(1);
         };
@@ -28,7 +33,16 @@ export default function Details() {
 
             fetchWorkoutDetails(workoutId, { ...workoutDetails });
         })();
-    }, []);
+    }, [fetchWorkoutDetails, workoutId]);
+
+    function likeHandler(e) {
+        e.preventDefault();
+
+        workoutService.like(workoutId, { userId: currentUserId })
+            .then(() => {
+                workoutLike(workoutId, currentUserId);
+            });
+    }
 
     return (
         <section id="details">
@@ -48,13 +62,15 @@ export default function Details() {
                         <DetailsLegs {...currentWorkout.exercises} />
                     }
                     <div id="likes">
-                        Likes: <span id="likes-count">0</span>
+                        Likes: <span id="likes-count">{currentWorkout.likedBy.length}</span>
                     </div>
-                    <div id="action-buttons">
-                        <Link to="" className="btn-details">
-                            Like
-                        </Link>
-                    </div>
+                    {!isLiked &&
+                        <div id="action-buttons">
+                            <button className="btn-details" onClick={likeHandler}>
+                                Like
+                            </button>
+                        </div>
+                    }
                 </div>
                 : <h2 className='details-loading'>Loading...</h2>}
         </section>

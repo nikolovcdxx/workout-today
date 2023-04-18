@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import * as authService from '../../services/authService';
 
+import './form.css';
+
 export default function Login() {
     const { userLogin } = useContext(AuthContext);
     const navigate = useNavigate();

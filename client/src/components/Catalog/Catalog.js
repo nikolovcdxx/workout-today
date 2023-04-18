@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { WorkoutContext } from '../../contexts/WorkoutContext';
 import CatalogItem from './CatalogItem/CatalogItem';
 
+import './catalog.css';
 
 export default function Catalog() {
     const { workouts } = useContext(WorkoutContext);

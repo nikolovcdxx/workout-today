@@ -54,5 +54,13 @@ router.delete('/:id', isAuth(), preload(), isOwner(), async (req, res) => {
     res.status(204).end();
 });
 
+router.post('/:id/like', isAuth(), preload(), async(req, res) => {
+    const workoutId = req.params.id;
+    const userId = req.body.userId;
+    await api.like(workoutId, userId);
+
+    res.json({});
+});
+
 
 module.exports = router;

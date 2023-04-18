@@ -14,7 +14,6 @@ export default function Edit() {
     const { workoutId } = useParams();
 
     const currentWorkout = selectWorkout(workoutId);
-    console.log(currentWorkout);
 
     const generateHandler = (e) => {
         e.preventDefault();

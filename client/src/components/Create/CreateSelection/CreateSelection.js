@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import './createSelection.css';
+
 export default function CreateSelection() {
     return (
         <section id="dashboard">

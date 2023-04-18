@@ -19,13 +19,6 @@ import Edit from './components/Edit/Edit';
 import PrivateGuard from './components/common/PrivateGuard';
 import PublicGuard from './components/common/PublicGuard';
 
-import './form.css';
-import './createSelection.css';
-import './push.css';
-import './catalog.css';
-import './details.css';
-import './home.css';
-
 function App() {
 
     return (
