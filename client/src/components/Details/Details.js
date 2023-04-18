@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+
 import { WorkoutContext } from '../../contexts/WorkoutContext';
 
 import DetailsPush from './DetailsPush/DetailsPush';

@@ -1,5 +1,5 @@
-import { useContext, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { WorkoutContext } from '../../contexts/WorkoutContext';
 
 import ProfilePush from './ProfilePush/ProfilePush';
@@ -58,12 +58,12 @@ export default function Profile() {
                     {currentWorkout.type === 'legs' &&
                         <ProfileLegs {...currentWorkout.exercises} />
                     }
-                    
+
                     <div id="likes">
                         Likes: <span id="likes-count">0</span>
                     </div>
                     <div id="action-buttons">
-                        <Link to="">
+                        <Link to={`/my-workout/${workoutId}/edit`}>
                             Edit
                         </Link>
                         <button className="btn-details" onClick={workoutDeleteHandler}>

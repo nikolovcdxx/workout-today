@@ -35,6 +35,7 @@ router.put('/:id', isAuth(), preload(), isOwner(), async (req, res) => {
     const workout = {
         type: req.body.type,
         exercises: req.body.exercises,
+        ownerName: req.body.ownerName,
     };
 
     try {

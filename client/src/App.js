@@ -16,6 +16,8 @@ import Legs from './components/Create/Legs/Legs';
 import Details from './components/Details/Details';
 import Profile from './components/Profile/Profile';
 import Edit from './components/Edit/Edit';
+import PrivateGuard from './components/common/PrivateGuard';
+import PublicGuard from './components/common/PublicGuard';
 
 import './form.css';
 import './createSelection.css';
@@ -34,17 +36,24 @@ function App() {
                 <WorkoutProvider>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/logout" element={<Logout />} />
-                        <Route path="/create" element={<CreateSelection />} />
-                        <Route path="/create/push" element={<Push />} />
-                        <Route path="/create/pull" element={<Pull />} />
-                        <Route path="/create/legs" element={<Legs />} />
                         <Route path="/workouts" element={<Catalog />} />
                         <Route path="/workouts/:workoutId" element={<Details />} />
-                        <Route path="/workouts/:workoutId/edit" element={<Edit />} />
-                        <Route path="/my-workout" element={<Profile/>} />
+
+                        <Route element={<PublicGuard />}>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                        </Route>
+
+                        <Route element={<PrivateGuard />}>
+                            <Route path="/logout" element={<Logout />} />
+                            <Route path="/create" element={<CreateSelection />} />
+                            <Route path="/create/push" element={<Push />} />
+                            <Route path="/create/pull" element={<Pull />} />
+                            <Route path="/create/legs" element={<Legs />} />
+                            <Route path="/my-workout" element={<Profile />} />
+                            <Route path="/my-workout/:workoutId/edit" element={<Edit />} />
+                        </Route>
+
                         <Route path="*" element={<h2>404 NOT FOUND MADAFAKA</h2>} />
                     </Routes>
                 </WorkoutProvider>
