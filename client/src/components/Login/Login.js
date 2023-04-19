@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../contexts/AuthContext';
@@ -9,9 +9,11 @@ import './form.css';
 export default function Login() {
     const { userLogin } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [incorrectMsg, setIncorrectMsg] = useState('');
 
     const onSubmit = (e) => {
         e.preventDefault();
+
 
         const {
             username,
@@ -21,15 +23,12 @@ export default function Login() {
         authService.login(username, password)
             .then(authData => {
                 if (authData.msg) {
-                    console.log(authData.msg);
+                    setIncorrectMsg(authData.msg);
                 } else {
                     userLogin(authData);
                     navigate('/');
                 }
-            })
-            .catch(() => {
-                navigate('/404');
-            });
+            });  
     };
 
     return (
@@ -44,6 +43,7 @@ export default function Login() {
                         id="password"
                         placeholder="password"
                     />
+                    {incorrectMsg && <p>{incorrectMsg}</p>}
                     <button type="submit">login</button>
                     <p className="message">
                         Not registered? <Link to="/register"> Create an account </Link>

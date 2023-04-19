@@ -16,6 +16,8 @@ import Legs from './components/Create/Legs/Legs';
 import Details from './components/Details/Details';
 import Profile from './components/Profile/Profile';
 import Edit from './components/Edit/Edit';
+import NotFound from './components/NotFound/NotFound';
+
 import PrivateGuard from './components/common/PrivateGuard';
 import PublicGuard from './components/common/PublicGuard';
 
@@ -47,7 +49,7 @@ function App() {
                             <Route path="/my-workout/:workoutId/edit" element={<Edit />} />
                         </Route>
 
-                        <Route path="*" element={<h2>404 NOT FOUND MADAFAKA</h2>} />
+                        <Route path="*" element={<NotFound/>} />
                     </Routes>
                 </WorkoutProvider>
             </div>

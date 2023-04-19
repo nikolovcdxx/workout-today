@@ -103,3 +103,7 @@
     color: #535353;
     text-decoration: none;
 }
+
+.login-form p {
+    color:red;
+}

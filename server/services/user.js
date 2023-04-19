@@ -10,7 +10,7 @@ async function register(username, password) {
     const existing = await getUserByUsername(username);
 
     if (existing) {
-        throw new Error('Username is taken');
+        throw new Error('Username is taken!');
     }
 
     const user = new User({
@@ -26,12 +26,12 @@ async function login(username, password) {
     const user = await getUserByUsername(username);
 
     if (!user) {
-        throw new Error('Incorrect username or password');
+        throw new Error('Incorrect username or password!');
     }
 
     const hasMatch = await compare(password, user.hashedPassword);
     if (!hasMatch) {
-        throw new Error('Incorrect username or password');
+        throw new Error('Incorrect username or password!');
     }
 
     return createSession(user);
