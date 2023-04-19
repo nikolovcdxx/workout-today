@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom';
 
 export default function CatalogItem({ workout }) {
     const currentUserName = JSON.parse(localStorage.getItem('auth')).username;
-
+    
     const usernameCap = (u) => {
         return u.charAt(0).toUpperCase() + u.slice(1);
     };
 
     const isMyWorkout = currentUserName === workout.ownerName;
+
 
     return (
         <li className="item">
@@ -25,7 +26,7 @@ export default function CatalogItem({ workout }) {
                     ? <span>My choise today: <div><strong>{workout.type.toUpperCase()}</strong></div></span>
                     : <span>His choise today: <div><strong>{workout.type.toUpperCase()}</strong></div></span>
                 }
-                {isMyWorkout
+                {isMyWorkout 
                     ? <Link className="action" to={'/my-workout'}>
                         See details
                     </Link>

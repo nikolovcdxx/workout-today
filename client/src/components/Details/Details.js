@@ -64,7 +64,7 @@ export default function Details() {
                     <div id="likes">
                         Likes: <span id="likes-count">{currentWorkout.likedBy.length}</span>
                     </div>
-                    {!isLiked &&
+                    {!isLiked && currentUserId &&
                         <div id="action-buttons">
                             <button className="btn-details" onClick={likeHandler}>
                                 Like
